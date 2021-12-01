@@ -9,11 +9,8 @@ const array = [
 ]
 
 const displayOccurences = (ar)=>{
-    const res = {}
-    for(let i=0; i<ar.length; i++){
-        res[ar[i]] = res[ar[i]]!=undefined?++res[ar[i]]:1
-    }
-    Object.entries(res).sort((a,b)=>b[1]-a[1]).forEach(s=>console.log(`${s[0]} - ${s[1]}`))
+
+    Object.entries(( ()=> {ar.forEach(element=>ar[element] = ar[element]!==undefined ? ++ar[element] : 1); return ar})() ).sort((a,b)=>b[1]-a[1]).filter(elem=>isNaN(+elem[0]) ).forEach(s=>console.log(`${s[0]} - ${s[1]}`))
 }
 
 displayOccurences(array)
